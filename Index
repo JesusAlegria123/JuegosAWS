@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal de Juegos - AWS EC2</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            width: 100%;
+        }
+        h1 {
+            text-align: center;
+            color: white;
+            font-size: 48px;
+            margin-bottom: 20px;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+            animation: fadeInDown 0.8s ease;
+        }
+        .subtitle {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 20px;
+            margin-bottom: 50px;
+            animation: fadeInDown 1s ease;
+        }
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        .game-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            animation: fadeInUp 0.8s ease;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+        .game-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+        }
+        .game-card:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+        .game-card:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        .game-card:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+        .game-icon {
+            font-size: 64px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .game-title {
+            font-size: 28px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .game-description {
+            color: #666;
+            line-height: 1.6;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .game-features {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 20px;
+        }
+        .game-features li {
+            padding: 8px 0;
+            color: #555;
+            border-bottom: 1px solid #eee;
+        }
+        .game-features li:last-child {
+            border-bottom: none;
+        }
+        .game-features li:before {
+            content: "✓ ";
+            color: #4CAF50;
+            font-weight: bold;
+            margin-right: 8px;
+        }
+        .play-button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 18px;
+            transition: all 0.3s ease;
+            border: none;
+            width: 100%;
+            cursor: pointer;
+        }
+        .play-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.5);
+        }
+        .difficulty {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .easy {
+            background: #4CAF50;
+            color: white;
+        }
+        .medium {
+            background: #FF9800;
+            color: white;
+        }
+        .hard {
+            background: #F44336;
+            color: white;
+        }
+        .footer {
+            text-align: center;
+            color: white;
+            margin-top: 40px;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 15px;
+            animation: fadeIn 1.5s ease;
+        }
+        .footer p {
+            margin: 5px 0;
+        }
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎮 Portal de Juegos</h1>
+        <p class="subtitle">Desarrollado con HTML5, CSS3 y JavaScript | Desplegado en AWS EC2</p>
+        
+        <div class="games-grid">
+            <!-- Juego 1: Snake -->
+            <a href="snake.html" class="game-card">
+                <div class="game-icon">🐍</div>
+                <span class="difficulty easy">FÁCIL</span>
+                <h2 class="game-title">Snake Clásico</h2>
+                <p class="game-description">
+                    El clásico juego de la serpiente. Come las manzanas y crece sin chocarte contigo mismo.
+                </p>
+                <ul class="game-features">
+                    <li>Controles simples con flechas</li>
+                    <li>Puntuación progresiva</li>
+                    <li>Diseño minimalista</li>
+                    <li>Perfecto para principiantes</li>
+                </ul>
+                <button class="play-button">Jugar Ahora →</button>
+            </a>
+
+            <!-- Juego 2: Space Invaders -->
+            <a href="space-invaders.html" class="game-card">
+                <div class="game-icon">👾</div>
+                <span class="difficulty medium">MEDIO</span>
+                <h2 class="game-title">Space Invaders</h2>
+                <p class="game-description">
+                    Defiende la Tierra de la invasión alienígena. Dispara y esquiva en este clásico arcade.
+                </p>
+                <ul class="game-features">
+                    <li>Efectos de sonido retro</li>
+                    <li>Sistema de vidas</li>
+                    <li>Niveles progresivos</li>
+                    <li>Enemigos con IA básica</li>
+                </ul>
+                <button class="play-button">Jugar Ahora →</button>
+            </a>
+
+            <!-- Juego 3: Plataformas -->
+            <a href="plataformas.html" class="game-card">
+                <div class="game-icon">🏃</div>
+                <span class="difficulty hard">DIFÍCIL</span>
+                <h2 class="game-title">Aventura de Plataformas</h2>
+                <p class="game-description">
+                    Salta, recoge gemas y llega a la meta en este desafiante juego de plataformas.
+                </p>
+                <ul class="game-features">
+                    <li>Física realista de saltos</li>
+                    <li>Múltiples niveles</li>
+                    <li>Sistema de tiempo límite</li>
+                    <li>Efectos de sonido inmersivos</li>
+                </ul>
+                <button class="play-button">Jugar Ahora →</button>
+            </a>
+        </div>
+
+        <div class="footer">
+            <p><strong>🚀 Proyecto desplegado en AWS EC2</strong></p>
+            <p>Tecnologías: HTML5 Canvas | JavaScript ES6 | Web Audio API | Apache Server</p>
+            <p>© 2024 - Desarrollado como proyecto educativo</p>
+        </div>
+    </div>
+</body>
+</html>
